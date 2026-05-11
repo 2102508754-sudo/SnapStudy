@@ -3,6 +3,7 @@ import { FiClock, FiCheckCircle, FiChevronRight, FiRotateCcw, FiZap, FiSearch } 
 import { topics } from '../data/topics';
 import { useDebounce } from '../hooks/useDebounce';
 import { useThrottle } from '../hooks/useThrottle';
+import SEO from '../components/seo/SEO';
 import './StudyPage.css';
 
 /* ── Helpers ─────────────────────────────────── */
@@ -240,6 +241,11 @@ export default function StudyPage() {
   if (!activeTopic) {
     return (
       <div className="study-layout">
+        <SEO 
+          title="Study" 
+          description="Read bite-sized study notes and practice with MCQs." 
+          path="/study" 
+        />
         <aside className="study-sidebar" aria-label="Topic list">
           <div className="sidebar-topics-header">
             <h2>Topics</h2>
@@ -287,6 +293,11 @@ export default function StudyPage() {
 
   return (
     <div className="study-layout">
+      <SEO 
+        title={activeTopic.title} 
+        description={`Study notes and MCQs for ${activeTopic.title} (${activeTopic.subject}).`} 
+        path={`/study`} 
+      />
       {/* ── Sidebar ── */}
       <aside className="study-sidebar" aria-label="Topic list">
         {/* Debounced search input */}

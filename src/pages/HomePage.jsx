@@ -3,6 +3,7 @@ import {
   FiBook, FiZap, FiCheckCircle,
   FiArrowRight, FiStar, FiClock, FiTarget,
 } from 'react-icons/fi';
+import SEO from '../components/seo/SEO';
 import './HomePage.css';
 
 const FEATURES = [
@@ -36,6 +37,11 @@ const STEPS = [
 export default function HomePage() {
   return (
     <>
+      <SEO 
+        title="Active Learning Platform" 
+        description="Ditch the textbook. Study smarter with bite-sized notes and instant MCQ practice — built for NST students, by NST students." 
+        path="/" 
+      />
       {/* ── Hero ── */}
       <section className="home-hero section" aria-labelledby="hero-heading">
         <div className="home-hero-glow" aria-hidden="true" />

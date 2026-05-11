@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { FiArrowRight, FiGrid } from 'react-icons/fi';
 import { useInfiniteScroll } from '../hooks/useInfiniteScroll';
+import SEO from '../components/seo/SEO';
 import './SubjectsPage.css';
 
 // ── Database (Empty for now) ──────────────────────────────────────
@@ -47,6 +48,11 @@ export default function SubjectsPage() {
 
   return (
     <div className="subjects-page container">
+      <SEO 
+        title="Browse Subjects" 
+        description="Browse through the complete catalog of computer science and technology subjects available on SnapStudy." 
+        path="/subjects" 
+      />
       <header className="subjects-header">
         <span className="badge badge-primary">Course Catalog</span>
         <h1>All Subjects</h1>
