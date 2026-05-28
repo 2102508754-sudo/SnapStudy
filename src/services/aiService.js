@@ -28,39 +28,6 @@ const providers = [
       messages: [{ role: "user", content: prompt }]
     }),
     extract: (data) => data.choices?.[0]?.message?.content
-  },
-  {
-    name: "groq",
-    key: import.meta.env.VITE_GROQ_KEY,
-    url: "https://api.groq.com/openai/v1/chat/completions",
-    model: "llama3-70b-8192",
-    headers: (key) => ({
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${key}`
-    }),
-    body: (model, prompt) => ({
-      model: model,
-      messages: [{ role: "user", content: prompt }]
-    }),
-    extract: (data) => data.choices?.[0]?.message?.content
-  },
-  {
-    name: "claude",
-    key: import.meta.env.VITE_CLAUDE_KEY || import.meta.env.VITE_CLAUDE_API_KEY || import.meta.env.VITE_ANTHROPIC_API_KEY,
-    url: "https://api.anthropic.com/v1/messages",
-    model: "claude-3-5-sonnet-20241022",
-    headers: (key) => ({
-      "Content-Type": "application/json",
-      "x-api-key": key,
-      "anthropic-version": "2023-06-01",
-      "anthropic-dangerously-allow-browser": "true"
-    }),
-    body: (model, prompt) => ({
-      model: model,
-      max_tokens: 4000,
-      messages: [{ role: "user", content: prompt }]
-    }),
-    extract: (data) => data.content?.[0]?.text
   }
 ];
 
@@ -74,7 +41,7 @@ async function callAIWithFallback(prompt) {
   const activeProviders = providers.filter(p => p.key);
 
   if (activeProviders.length === 0) {
-    throw new Error("No AI API keys configured. Please add VITE_GEMINI_API_KEY, VITE_OPENAI_KEY_1, VITE_GROQ_KEY, or VITE_CLAUDE_KEY to your .env file.");
+    throw new Error("No AI API keys configured. Please add VITE_GEMINI_API_KEY or VITE_OPENAI_KEY_1 to your .env file.");
   }
 
   let lastError = null;
